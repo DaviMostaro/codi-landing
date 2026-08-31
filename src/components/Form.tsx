@@ -21,8 +21,18 @@ export function Form() {
     resolver: zodResolver(FormSchema),
   });
 
-  function onSubmit(data: FormData) {
-    console.log(data);
+  async function onSubmit(data: FormData) {
+    const response = await fetch("/api/enrollment", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+  
+    const result = await response.json();
+  
+    console.log(result);
   }
 
   return (
