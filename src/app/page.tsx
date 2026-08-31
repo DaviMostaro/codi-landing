@@ -1,5 +1,6 @@
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
+import { WhyFullStack } from "@/components/WhyFullStack";
 
 export default function Home() {
   return (
@@ -13,7 +14,7 @@ export default function Home() {
           <Hero />
         </section>
         <section id="why-full-stack">
-          {/* <WhyFullStack /> */}
+          <WhyFullStack />
         </section>
         <section id="about-course">
           {/* <AboutCourse /> */}
