@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -12,27 +13,51 @@ const sourceOptions = ["Instagram", "Facebook", "Google", "Indicação", "Outro"
 const inputClassName =
   "h-11 w-full rounded-lg border border-codi-border bg-white px-3.5 text-sm text-codi-text placeholder:text-codi-text-secondary/60 transition-colors focus:border-codi-primary focus:outline-none focus:ring-2 focus:ring-codi-primary/30";
 
+type SubmitMessage = { type: "success" | "error"; text: string } | null;
+
 export function Form() {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    reset,
+    formState: { errors, isSubmitting },
   } = useForm<FormData>({
     resolver: zodResolver(FormSchema),
   });
 
+  const [message, setMessage] = useState<SubmitMessage>(null);
+
   async function onSubmit(data: FormData) {
-    const response = await fetch("/api/enrollment", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-  
-    const result = await response.json();
-  
-    console.log(result);
+    setMessage(null);
+
+    try {
+      const response = await fetch("/api/enrollment", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        setMessage({
+          type: "error",
+          text: "Não foi possível enviar sua inscrição. Tente novamente.",
+        });
+        return;
+      }
+
+      reset();
+      setMessage({
+        type: "success",
+        text: "Inscrição enviada com sucesso! Entraremos em contato em breve.",
+      });
+    } catch {
+      setMessage({
+        type: "error",
+        text: "Erro de conexão. Verifique sua internet e tente novamente.",
+      });
+    }
   }
 
   return (
@@ -164,10 +189,23 @@ export function Form() {
 
             <button
               type="submit"
-              className="mt-1 w-full rounded-lg bg-codi-primary px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-codi-primary-hover"
+              disabled={isSubmitting}
+              className="mt-1 w-full rounded-lg bg-codi-primary px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-codi-primary-hover disabled:cursor-not-allowed disabled:opacity-60"
             >
-              Quero me inscrever
+              {isSubmitting ? "Enviando..." : "Quero me inscrever"}
             </button>
+
+            {message && (
+              <p
+                className={`text-sm font-medium ${
+                  message.type === "success"
+                    ? "text-green-600"
+                    : "text-red-500"
+                }`}
+              >
+                {message.text}
+              </p>
+            )}
           </form>
         </div>
       </div>
