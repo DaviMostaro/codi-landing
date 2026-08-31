@@ -42,7 +42,7 @@ const pillars = [
 
 export function WhatYouWillLearn() {
   return (
-    <section id="what-you-will-learn" className="bg-codi-soft-bg">
+    <section id="aprendizado" className="bg-codi-soft-bg">
       <div className="mx-auto max-w-7xl px-6 py-20 sm:py-28">
         <div className="flex flex-col items-center text-center">
           <span className="text-sm font-semibold uppercase tracking-widest text-codi-text-accent">
