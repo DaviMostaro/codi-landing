@@ -4,7 +4,7 @@ import { WhyFullStack } from "@/components/WhyFullStack";
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
+    <div className="flex min-h-screen flex-col">
       <header className="">
         <Header />
       </header>
