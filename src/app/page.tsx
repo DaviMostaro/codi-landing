@@ -2,6 +2,7 @@ import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { WhyFullStack } from "@/components/WhyFullStack";
 import { AboutCourse } from "@/components/AboutCourse";
+import { WhatYouWillLearn } from "@/components/WhatYouWillLearn";
 
 export default function Home() {
   return (
@@ -20,9 +21,7 @@ export default function Home() {
         <section id="about-course">
           <AboutCourse />
         </section>
-        <section id="what-you-will-learn">
-          {/* <WhatYouWillLearn /> */}
-        </section>
+          <WhatYouWillLearn />
         <section id="form">
           {/* <Form /> */}
         </section>
