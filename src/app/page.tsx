@@ -3,6 +3,7 @@ import { Hero } from "@/components/Hero";
 import { WhyFullStack } from "@/components/WhyFullStack";
 import { AboutCourse } from "@/components/AboutCourse";
 import { WhatYouWillLearn } from "@/components/WhatYouWillLearn";
+import { Form } from "@/components/Form";
 
 export default function Home() {
   return (
@@ -22,17 +23,15 @@ export default function Home() {
           <AboutCourse />
         </section>
           <WhatYouWillLearn />
-        <section id="form">
-          {/* <Form /> */}
-        </section>
+        <Form />
         <section id="contact">
           {/* <Contact /> */}
         </section>
       </main>
 
-      <footer className="">
-        {/* <Footer /> */}
-      </footer>
-    </div>
-  );
-}
+        <footer className="">
+          {/* <Footer /> */}
+        </footer>
+      </div>
+    );
+  }
