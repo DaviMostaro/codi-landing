@@ -4,6 +4,7 @@ import { WhyFullStack } from "@/components/WhyFullStack";
 import { AboutCourse } from "@/components/AboutCourse";
 import { WhatYouWillLearn } from "@/components/WhatYouWillLearn";
 import { Form } from "@/components/Form";
+import { Contact } from "@/components/Contact";
 
 export default function Home() {
   return (
@@ -22,16 +23,20 @@ export default function Home() {
         <section id="about-course">
           <AboutCourse />
         </section>
+        <section id="what-you-will-learn">
           <WhatYouWillLearn />
-        <Form />
+        </section>
+        <section id="form">
+          <Form />
+        </section>
         <section id="contact">
-          {/* <Contact /> */}
+          <Contact />
         </section>
       </main>
 
-        <footer className="">
-          {/* <Footer /> */}
-        </footer>
-      </div>
-    );
-  }
+      <footer className="">
+        {/* <Footer /> */}
+      </footer>
+    </div>
+  );
+}
